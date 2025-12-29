@@ -1,6 +1,8 @@
 package com.playwright.playwright_java;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.WaitForSelectorState;
+
 import org.testng.annotations.*;
 
 public class Baseclass {
@@ -17,10 +19,34 @@ public class Baseclass {
         page = browser.newPage();
     }
 
-    @AfterMethod
-    public void tearDown() {
-        if (page != null) page.close();
-        if (browser != null) browser.close();
-        if (playwright != null) playwright.close();
+    // ✅ COMMON WAIT METHODS (ADD THESE)
+
+    protected void waitForVisible(String locator) {
+        page.waitForSelector(locator,
+            new Page.WaitForSelectorOptions()
+                .setState(WaitForSelectorState.VISIBLE));
     }
-}
+
+    protected void waitForAttached(String locator) {
+        page.waitForSelector(locator,
+            new Page.WaitForSelectorOptions()
+                .setState(WaitForSelectorState.ATTACHED));
+    }
+
+    protected void waitForHidden(String locator) {
+        page.waitForSelector(locator,
+            new Page.WaitForSelectorOptions()
+                .setState(WaitForSelectorState.HIDDEN));
+    }
+
+    protected void waitForTimeout(int millis) {
+        page.waitForTimeout(millis);
+    }
+
+//    @AfterMethod
+//    public void tearDown() {
+//        if (page != null) page.close();
+//        if (browser != null) browser.close();
+//        if (playwright != null) playwright.close();
+    }
+//}

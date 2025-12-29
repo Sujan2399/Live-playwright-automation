@@ -2,8 +2,7 @@
 <suite name="Playwright Suite">
     <test name="Playwright Tests">
         <classes>
-            <class name="com.playwright.tests.AppTest"/>
-             <class name="com.playwright.tests.ssp"/>
+            <class name="com.playwright.playwright_java.LoginTest"/>
         </classes>
     </test>
 </suite>
